@@ -53,6 +53,21 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: "**/*.tar", fingerprint: true, followSymlinks: false
             }
         }
+	stage("uploading artifacts to artifactory storage") {
+	    steps {
+		rtUpload (
+    			 serverId: "artifacts-j",
+     				spec: '''{
+					"files": [
+						{
+						"pattern": "dist/",
+						"target": "default-pypi-local/"
+ 						}
+					]	
+				}'''
+		)
+
+   	    }
+	}
     }
 }
- 
