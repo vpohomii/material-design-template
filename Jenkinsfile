@@ -61,7 +61,7 @@ pipeline {
 					                    "files": [
 						                           {
 						                             "pattern": "*.tar",
-						                             "target": "npm-artifactory/"
+						                             "target": "artifactory/npm-artifactory//"
  						                            }
 					                              ]	
 				                            }'''
