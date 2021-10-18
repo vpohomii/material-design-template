@@ -4,7 +4,7 @@ pipeline {
     }
     
     triggers {
-         pollSCM ('0 * * * *')
+         pollSCM ('0 * * * *') 
     }
 
     tools {
