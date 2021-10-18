@@ -78,14 +78,14 @@
 ```
    #Create and write file 
 4. vim Jenkinsfile #with declarative pipeline
-```Groovy
+```
 pipeline { 
      agent {
         label "agentVM1"
     }
     
     triggers {
-         pollSCM ('0 * * * *')
+         pollSCM ('0 * * * *')  
     }
 
     tools {
@@ -97,6 +97,8 @@ pipeline {
             steps { 
                 checkout scm
             }
+
+
         }
         stage("Working with NodeJS npm packages") {
             parallel("compressing") {
@@ -132,8 +134,24 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: "**/*.tar", fingerprint: true, followSymlinks: false
             }
         }
+	      stage("uploading artifacts to artifactory storage") {
+	          steps {
+		            rtUpload (
+    			           serverId: "artifacts-j",
+     				              spec: '''{
+					                    "files": [
+						                           {
+						                             "pattern": "*.tar",
+						                             "target": "npm-artifactory//"
+ 						                            }
+					                              ]	
+				                            }'''
+		                      )
+
+   	              }
+	       }
     }
-} 
+}
 ```
 
 <img src="./job1.png" alt="Job_Config_p1" />
@@ -353,3 +371,53 @@ In Recent Deliverys we see that web hooks works propertly.
 <img src="./h6.png" alt="Hooks3" />
 <img src="./h7.png" alt="Hooks3" />
 <img src="./h10.png" alt="Hooks3" />
+
+<h2> * Spin up VM with artifactory and publish result to artifactory </h2>
+1. SpinUp Amazon EC-2 on debian. Install artifactory from .deb package https://www.jfrog.com/confluence/display/JFROG/Installing+Distribution#InstallingDistribution-ManualDebianInstallation
+http://3.126.153.191:8082/
+<img src="./jfrog.png" alt="Jfrog1" />
+3. Setup credentials.
+4. Create local generic repo with name nom-artifactory.
+5. <img src="./jfrog2.png" alt="Jfrog2" />
+6. Install Artifactory plugin.
+7. Setup "Instance ID" and JFrog Instance URL and credentials
+<img src="./jfrogs.png" alt="Jfrog3" />
+<img src="./jfrogc.png" alt="Jfrog4" />
+8. Start "Buld Job". Job Successfull. Artifact was uploaded.
+```
+Archiving artifacts
+Recording fingerprints
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (uploading artifacts to artifactory storage)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] rtUpload
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+[consumer_0] Deploying artifact: http://3.126.153.191:8082/artifactory/npm-artifactory/result.tar
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
+```
+<img src="./job.png" alt="Jfrog5" />
+<img src="./jlog1.png" alt="Jfrog6" />
+<img src="./jlog2.png" alt="Jfrog7" />
+<img src="./jlog3.png" alt="Jfrog8" />
+<img src="./jlog4.png" alt="Jfrog9" />
+<img src="./jlog5.png" alt="Jfrog10" />
