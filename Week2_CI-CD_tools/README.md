@@ -247,6 +247,7 @@ GitHub has been notified of this commit’s build result
 
 Finished: SUCCESS
 ```
+
 <img src="./job.png" alt="Jfrog5" />
 <img src="./jlog1.png" alt="Jfrog6" />
 <img src="./jlog2.png" alt="Jfrog7" />
