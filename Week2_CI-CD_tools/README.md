@@ -421,3 +421,4 @@ Finished: SUCCESS
 <img src="./jlog3.png" alt="Jfrog8" />
 <img src="./jlog4.png" alt="Jfrog9" />
 <img src="./jlog5.png" alt="Jfrog10" />
+<img src="./artif.png" alt="artifactory" />
