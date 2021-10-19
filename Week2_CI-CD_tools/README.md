@@ -196,7 +196,7 @@ pipeline {
 <img src="./Hooks2.png" alt="Hooks2" />
 <img src="./Hooks3.png" alt="Hooks3" />
 
-The go in top right corner click on username and choose Configure, then find "API tocken" field and press "Add new tocken" => Generate. Copy new token and go to UI of GitHub repository Settings. Click on WebHooks provide youre server webhook address (http://3.121.127.172:8081/github-webhook/) type of payload (json) and Secret (API tocken). Choose Events that will trigger hooks (Push and Pull Request). Click add webhook.  
+The go in top right corner click on username and choose Configure, then find "API tocken" field and press "Add new tocken" => Generate. Copy new token and go to UI of GitHub repository Settings. Click on WebHooks provide youre server webhook address (http://3.121.127.172:8081/github-webhook/) type of payload (json) and Secret (GitHub Personal token). Choose Events that will trigger hooks (Push and Pull Request). Click add webhook.  
 In Recent Deliverys we see that web hooks works propertly.
 <img src="./h4.png" alt="Hooks3" />
 <img src="./h5.png" alt="Hooks3" />
