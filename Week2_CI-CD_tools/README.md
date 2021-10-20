@@ -77,10 +77,8 @@
 
 
 ```
-
  *  git clone https://github.com/vpohomii/material-design-template.git
  *  git checkout -b week2_vpohomii
-
 ```
 
 <groovy src="./Jenkinsfile" alt="Jenkins file" />
