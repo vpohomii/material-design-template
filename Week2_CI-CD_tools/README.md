@@ -46,7 +46,8 @@
 10. Manage Jenkins = > Manage Plugins = > Aviable 
 11. Search and install Role-based authorization strategy (GitHub was installed by default).
 12. Manage Jenkins => Manage Users => Create User. (Create user jenkins-vasylpohomii).
-13. <img src="./RBStrategy.png" alt="Strategy" />
+
+  <img src="./RBStrategy.png" alt="Strategy" />
 
 <h2>Create Agent VM</h2>
 
