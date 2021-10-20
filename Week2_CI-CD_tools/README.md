@@ -1,5 +1,7 @@
 <h1>Week2 Assestment CI/CD by Pohomii Vasyl</h1>
+
 <h2>Create Jenkins VM with internet access</h2>
+
 1.  Create VM on AWS (Ubuntu 20.04 LTS with limited access. Create access key).  
 
 ```  
@@ -13,23 +15,30 @@
  * adding $JAVA_HOME path to /etc/environment
  * source /etc/environment
 ```
+
 2. Installing Jenkins. 
+
 ```
  * wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -  
  * sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
  * sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' 
  * sudo apt install -y jenkins 
 ```
+
 3. open /etc/default/jenkins and changin default port 8080 to 8081.  
+
 ``` 
  * sudo systemctl enable jenkins #starting and enabling jenkins  
  * sudo systemctl start jenkins  
 ```
+
 4. go on page http://3.121.127.172:8081/ 
+
 ```
 * sudo cat /var/lib/jenkins/secrets/initialAdminPassword   
   #prepare Initial admin password 
 ```  
+
 5. create user admin.
 6. Check Install suggested plugin.
 7. Go to Manage Jenkins -> Configure system
@@ -41,6 +50,7 @@
 13. <img src="./RBStrategy.png" alt="Strategy" />
 
 <h2>Create Agent VM</h2>
+
 1. Create and Spinup New VM on AWS (choose existing keypair, choose created earlier security group).  
 
 ```
@@ -48,6 +58,7 @@
 * sudo apt install git
 * sudo apt install -y openjdk-8-jre-headless  software-properties-common
 ```
+
 2. Creating new key with "ssh-keygen -m PEM" on Jenkins server VM, jenkins user.  
 3. Creatig group and user jenkins on Agent VM.  
 
@@ -66,10 +77,12 @@
 <img src="./AgentVM1.png" alt="AgentVM1" />
 
 <h2>Configure tools – NodeJS</h2>
+
 1. Go Manage Jenkins => Global Tool Configuration
 2. Add NodeJS installation and tools (uglify-js, clean-css).
    NodeJS version 14.18.1 (LTS version)
    tools name provided separated with wthitespace
+   
 <img src="./GlobalTools_NodeJS.png" alt="GTNode" />
 
 <h2>Create “Multibranch Pipeline” pipeline job </h2>
@@ -77,7 +90,6 @@
 1. Creating folder VasylPohomiy  
 2. cd VasylPohomii  
 3. Fork repo [https://github.com/joashp/material-design-template](materal-design-template)   
-
 
 ```
  *  git clone https://github.com/vpohomii/material-design-template.git
@@ -94,10 +106,13 @@
 <img src="./job3.png" alt="Job_Config_p3" />
 
 5. Changing URL of origin in git
+
    ```
    git remote set-url origin git@github.com:vpohomii/material-design-template.git
    ```
+   
 6. Push Changes to our new branch
+   
    ```
    git add .
    git commit -m "Create Jenkinsfile"
@@ -113,11 +128,14 @@
     > To github.com:vpohomii/material-design-template.git
     >    4c6dfff..8740315  week2_vpohomii -> week2_vpohomii  
    ```
+   
 7. Go to Jenkins UI http://3.121.127.172:8081/job/Week2_CICD_Assestment_VasiliyPohomii/job/week2_vpohomii/ and press "Build Now"
+
 <img src="./Build.png" alt="Build" />
 <img src="./Buildst.png" alt="Build" />
   
 <h2>Setup the GitHub webhook to trigger the jobs </h2>
+
 1. Go ManageJenkins => Configure System
    Find GitHub section
    Type the server name "server"
@@ -133,6 +151,7 @@
 
 The go in top right corner click on username and choose Configure, then find "API tocken" field and press "Add new tocken" => Generate. Copy new token and go to UI of GitHub repository Settings. Click on WebHooks provide youre server webhook address (http://3.121.127.172:8081/github-webhook/) type of payload (json) and Secret (GitHub Personal token). Choose Events that will trigger hooks (Push and Pull Request). Click add webhook.  
 In Recent Deliverys we see that web hooks works propertly.
+
 <img src="./h4.png" alt="Hooks3" />
 <img src="./h5.png" alt="Hooks3" />
 <img src="./h6.png" alt="Hooks3" />
@@ -140,17 +159,24 @@ In Recent Deliverys we see that web hooks works propertly.
 <img src="./h10.png" alt="Hooks3" />
 
 <h2> * Spin up VM with artifactory and publish result to artifactory </h2>
+
 1. SpinUp Amazon EC-2 on debian. Install artifactory from .deb package https://www.jfrog.com/confluence/display/JFROG/Installing+Distribution#InstallingDistribution-ManualDebianInstallation
 http://3.126.153.191:8082/
+
 <img src="./jfrog.png" alt="Jfrog1" />
-3. Setup credentials.
-4. Create local generic repo with name nom-artifactory.
-5. <img src="./jfrog2.png" alt="Jfrog2" />
-6. Install Artifactory plugin.
-7. Setup "Instance ID" and JFrog Instance URL and credentials
+
+2. Setup credentials.
+3. Create local generic repo with name nom-artifactory.
+
+ <img src="./jfrog2.png" alt="Jfrog2" />
+ 
+4. Install Artifactory plugin.
+5. Setup "Instance ID" and JFrog Instance URL and credentials
+
 <img src="./jfrogs.png" alt="Jfrog3" />
 <img src="./jfrogc.png" alt="Jfrog4" />
-8. Start "Buld Job". Job Successfull. Artifact was uploaded.
+
+6. Start "Buld Job". Job Successfull. Artifact was uploaded.
 
 ```
 Archiving artifacts
@@ -181,7 +207,6 @@ Recording fingerprints
 GitHub has been notified of this commit’s build result
 Finished: SUCCESS
 ```
-
 
 <img src="./job.png" alt="Jfrog5" />
 <img src="./jlog1.png" alt="Jfrog6" />
