@@ -41,23 +41,24 @@
 13. <img src="./RBStrategy.png" alt="Strategy" />
 
 <h2>Create Agent VM</h2>
-1. Create and Spinup New VM on AWS (choose existing keypair, choose created earlier security group). 
+1. Create and Spinup New VM on AWS (choose existing keypair, choose created earlier security group).
 ```  
-* sudo apt update && sudo apt upgrade -y  
-* sudo apt install git  
+* sudo apt update && sudo apt upgrade -y
+* sudo apt install git
 * sudo apt install -y openjdk-8-jre-headless  software-properties-common
 ```
 2. Creating new key with "ssh-keygen -m PEM" on Jenkins server VM, jenkins user.
 3. Creatig group and user jenkins on Agent VM. 
 ```
 * groupadd jenkins  
-* useradd -d /home/jenkins -m -r -s /bin/bash -g jenkins jenkins 
-* su -l jenkins # swich to user jenkins  
+* useradd -d /home/jenkins -m -r -s /bin/bash -g jenkins jenkins
+* su -l jenkins # swich to user jenkins
 * java -version # check Java aviablity  
 ``` 
 4. Copy content of public key to agent VM usr jennkins
 5. Connecting from Jenkins server to Agent VM via ssh with created key provided
 6. Manage Jenkins => Manage Node and Clouds => New Node => Provide name "agentVM1", "Remote root directory", No of executors", Choose usage - "Use this node as much as possible", Provide AgentVM ip addess, choose connect method via ssh, Adding Credentials (SSH Username with privat key), saving and chosing jenkins(jenkins), Choose "Manually trusted key verification Strategy" and "Keep this agent online as much as possible" in Aviability field. Click "Save" button.
+
 <img src="./AgentVM.png" alt="AgentVM" />
 <img src="./AgentVM1.png" alt="AgentVM1" />
 
@@ -75,11 +76,11 @@
 ```
  *  git clone https://github.com/vpohomii/material-design-template.git
  *  git checkout -b week2_vpohomii
-```
+ ```
    #Create and write file 
 4. vim Jenkinsfile #with declarative pipeline
 
-<groovy src="./Jenkins" alt="Jenkins file" />
+<groovy src="./Jenkinsfile" alt="Jenkins file" />
 
 <img src="./job1.png" alt="Job_Config_p1" />
 <img src="./job2.png" alt="Job_Config_p2" />
