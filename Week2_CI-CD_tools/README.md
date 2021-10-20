@@ -217,7 +217,8 @@ Finished: SUCCESS
 <img src="./artif.png" alt="artifactory" />
 
 <h3>Jenkinsfile </h3>
-```
+
+```  
 pipeline { 
      agent {
         label "agentVM1"
@@ -275,20 +276,21 @@ pipeline {
         }
 	      stage("uploading artifacts to artifactory storage") {
 	          steps {
-		            rtUpload (
-    			           serverId: "artifacts-j",
-     				              spec: '''{
-					                    "files": [
-						                           {
-						                             "pattern": "*.tar",
-						                             "target": "npm-artifactory//"
- 						                            }
-					                              ]	
-				                            }'''
-		                      )
+		      rtUpload (
+    			serverId: "artifacts-j",
+     		             spec: '''{
+		               "files": [
+		                          {
+		                            "pattern": "*.tar",
+	                                    "target": "npm-artifactory//"
+ 		                           }
+					 ]	
+		                       }'''
+                               )
 
    	              }
 	       }
     }
-}
+}  
+
 ```
