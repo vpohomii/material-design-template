@@ -169,9 +169,7 @@ Recording fingerprints
 [Pipeline] // node
 [Pipeline] End of Pipeline
 [consumer_0] Deploying artifact: http://3.126.153.191:8082/artifactory/npm-artifactory/result.tar
-
 GitHub has been notified of this commit’s build result
-
 Finished: SUCCESS
 ```
 
