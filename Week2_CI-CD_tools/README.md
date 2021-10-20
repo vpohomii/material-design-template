@@ -70,13 +70,14 @@
 <img src="./GlobalTools_NodeJS.png" alt="GTNode" />
 
 <h2>Create “Multibranch Pipeline” pipeline job </h2>
-1. Creating folder VasylPohomiy.
+1. Creating folder VasylPohomiy  
 2. cd VasylPohomii
 3. Fork repo [https://github.com/joashp/material-design-template](materal-design-template)
 ```
  *  git clone https://github.com/vpohomii/material-design-template.git
  *  git checkout -b week2_vpohomii
- ```
+```
+ 
    #Create and write file 
 4. vim Jenkinsfile #with declarative pipeline
 
