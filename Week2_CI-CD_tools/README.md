@@ -73,6 +73,7 @@
 1. Creating folder VasylPohomiy
 2. cd VasylPohomii
 3. Fork repo [https://github.com/joashp/material-design-template](materal-design-template)
+
 ```
 
  *  git clone https://github.com/vpohomii/material-design-template.git
