@@ -3,8 +3,8 @@
 1.  Create VM on AWS (Ubuntu 20.04 LTS with limited access. Create access key).  
 
 ```  
- * sudo apt update && sudo apt upgrade -y. 
- * sudo apt install git. 
+ * sudo apt update && sudo apt upgrade -y 
+ * sudo apt install git 
  * git config --global user.name "Vasiliy Pohomii"
  * git config --global user.email "vpohomii@playtika.com"
  * git config --global core.editor vim
@@ -18,7 +18,7 @@
  * wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -  
  * sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
  * sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' 
- * sudo apt install -y jenkins. 
+ * sudo apt install -y jenkins 
 ```
 3. open /etc/default/jenkins and changin default port 8080 to 8081.  
 ``` 
@@ -27,8 +27,8 @@
 ```
 4. go on page http://3.121.127.172:8081/ 
 ```
-* sudo cat /var/lib/jenkins/secrets/initialAdminPassword.   
-  #prepare Initial admin password. 
+* sudo cat /var/lib/jenkins/secrets/initialAdminPassword   
+  #prepare Initial admin password 
 ```  
 5. create user admin.
 6. Check Install suggested plugin.
@@ -143,6 +143,7 @@ http://3.126.153.191:8082/
 <img src="./jfrogs.png" alt="Jfrog3" />
 <img src="./jfrogc.png" alt="Jfrog4" />
 8. Start "Buld Job". Job Successfull. Artifact was uploaded.
+
 ```
 Archiving artifacts
 Recording fingerprints
@@ -172,7 +173,6 @@ Recording fingerprints
 GitHub has been notified of this commit’s build result
 Finished: SUCCESS
 ```
-
 
 
 <img src="./job.png" alt="Jfrog5" />
